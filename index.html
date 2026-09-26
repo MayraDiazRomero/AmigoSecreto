@@ -112,30 +112,30 @@
     <div class="lock" id="lockIcon">🔒</div>
     <h1>SISTEMA DE SEGURIDAD</h1>
     <div class="sub">AMIGO SECRETO</div>
-
+ 
     <div class="row"><span>Hora actual (Colombia)</span><span id="horaActual">--:--:--</span></div>
-    <div class="row"><span>Hora de liberación</span><span id="horaObjetivo">15:30:00</span></div>
-
+    <div class="row"><span>Hora de liberación</span><span id="horaObjetivo">18:00:00</span></div>
+ 
     <div class="countdown" id="countdown">--:--:--</div>
-
+ 
     <div class="status" id="statusBox">
       <div>🔒 ACCESO DENEGADO</div>
       <div style="margin-top:6px; font-size:0.85rem; color:var(--muted);">
-        El nombre está encriptado. Se revelará automáticamente a las 3:30 PM (hora Colombia).
+        El nombre está encriptado. Se revelará automáticamente a las 6:00 PM (hora Colombia).
       </div>
     </div>
   </div>
-
+ 
 <script>
   var CODIGO_OCULTO = "14J25U36L52I94A18N63 52M84E71N49D62E12Z";
-  var HORA_OBJETIVO_SEG = 15 * 3600 + 30 * 60; // 15:30:00 en segundos
-
+  var HORA_OBJETIVO_SEG = 18 * 3600 + 0 * 60; // 18:00:00 en segundos
+ 
   function decodificar(codigo) {
     var out = "";
     for (var i = 2; i < codigo.length; i += 3) out += codigo[i];
     return out;
   }
-
+ 
   function getColombiaParts() {
     // America/Bogota no usa horario de verano, siempre UTC-5
     var fmt = new Intl.DateTimeFormat('en-GB', {
@@ -151,18 +151,18 @@
     });
     return { h: h, m: m, s: s, totalSeg: h * 3600 + m * 60 + s };
   }
-
+ 
   function pad(n) { return n < 10 ? '0' + n : '' + n; }
-
+ 
   function tick() {
     var t = getColombiaParts();
     document.getElementById('horaActual').textContent =
       pad(t.h) + ':' + pad(t.m) + ':' + pad(t.s);
-
+ 
     var statusBox = document.getElementById('statusBox');
     var countdownEl = document.getElementById('countdown');
     var lockIcon = document.getElementById('lockIcon');
-
+ 
     if (t.totalSeg >= HORA_OBJETIVO_SEG) {
       var nombre = decodificar(CODIGO_OCULTO);
       lockIcon.textContent = '🎉';
@@ -182,10 +182,10 @@
       statusBox.innerHTML =
         '<div>🔒 ACCESO DENEGADO</div>' +
         '<div style="margin-top:6px; font-size:0.85rem; color:var(--muted);">' +
-        'El nombre está encriptado. Se revelará automáticamente a las 3:30 PM (hora Colombia).</div>';
+        'El nombre está encriptado. Se revelará automáticamente a las 6:00 PM (hora Colombia).</div>';
     }
   }
-
+ 
   tick();
   setInterval(tick, 1000);
 </script>
