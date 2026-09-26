@@ -165,10 +165,10 @@
     if (t.totalSeg >= HORA_OBJETIVO_SEG) {
       var nombre = decodificar(CODIGO_OCULTO);
       lockIcon.textContent = '🎉';
-      countdownEl.textContent = '¡LIBERADO!';
+      countdownEl.textContent = '¡ES!';
       statusBox.className = 'status ok';
       statusBox.innerHTML =
-        '<div>🎉 ¡ACCESO CONCEDIDO! 🎉</div>' +
+        '<div>✨🎉✨🎉✨🎉✨</div>' +
         '<div class="reveal">✨ ' + nombre + ' ✨</div>';
     } else {
       var restante = HORA_OBJETIVO_SEG - t.totalSeg;
